@@ -22,22 +22,22 @@ body {
 }  
 .btn:active {  
     scale: 0.90;  
-    color: crimson;  
+    color: rgb(246, 81, 21);  
     font-weight: bold;  
 }  
 .calculator {  
-    border: 3px solid crimson;  
+    /* border: 3px solid crimson;   */
     max-width: 500px;  
     margin: 10px auto;  
     display: grid;  
     grid-template-columns: repeat(4, 1fr);  
     grid-template-rows: 120px repeat(5, 100px);  
     gap: 1px;  
-    background-color: crimson;  
+    background-color: rgb(246, 81, 21);  
 }  
 .screen {  
     grid-column: 1 / -1;  
-    background-color: rgb(246, 81, 21);  
+    background-color:rgb(246, 81, 21);  
     display: flex; 
     flex-direction: column; 
     justify-content: space-evenly; 
@@ -58,4 +58,32 @@ body {
 }
 .current {
     overflow: hidden;
+}
+.equal {
+    background-color: rgb(246, 81, 21);
+    color: white;
+}
+.equal:hover {
+    background-color: rgb(255, 126, 79);
+}
+.equal:active {
+    color: white;
+}
+.ac {
+    background-color: skyblue;
+}
+.ac:hover {
+    background-color: rgb(162, 217, 239);
+}
+.del {
+    background-color: skyblue;
+}
+.del:hover {
+    background-color: rgb(162, 217, 239);
+}
+.operation {
+    background-color: skyblue;
+}
+.operation:hover {
+    background-color: rgb(162, 217, 239);
 }
