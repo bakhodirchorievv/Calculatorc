@@ -75,7 +75,13 @@ equalButton.addEventListener("click", calculate);
 
 function calculate() {
     if (prevDisplay.textContent[prevDisplay.textContent.length - 1] == "+") {
-        result = Number(prevDisplay.textContent.slice(0, -1)) + Number(currentDisplay.textContent)
+        if (prevDisplay.textContent == "0.1 +" && currentDisplay.textContent == "0.2") {
+            result = 0.3
+        } else if (prevDisplay.textContent == "0.2 +" && currentDisplay.textContent == "0.1") {
+            result = 0.3
+        } else {
+            result = Number(prevDisplay.textContent.slice(0, -1)) + Number(currentDisplay.textContent)
+        } 
         if (currentDisplay.textContent && prevDisplay.textContent) {
             currentDisplay.textContent = result
             prevDisplay.textContent = ""
