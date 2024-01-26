@@ -75,33 +75,31 @@ equalButton.addEventListener("click", calculate);
 
 function calculate() {
     if (prevDisplay.textContent[prevDisplay.textContent.length - 1] == "+") {
-        if (prevDisplay.textContent == "0.1 +" && currentDisplay.textContent == "0.2") {
-            result = 0.3
-        } else if (prevDisplay.textContent == "0.2 +" && currentDisplay.textContent == "0.1") {
-            result = 0.3
-        } else {
-            result = Number(prevDisplay.textContent.slice(0, -1)) + Number(currentDisplay.textContent)
-        } 
+        result = (parseFloat(prevDisplay.textContent.slice(0, -1)) + parseFloat(currentDisplay.textContent)).toFixed(10)
         if (currentDisplay.textContent && prevDisplay.textContent) {
-            currentDisplay.textContent = result
+            currentDisplay.textContent = parseFloat(result)
+            currentOperand = currentDisplay.textContent
             prevDisplay.textContent = ""
         }
     } else if (prevDisplay.textContent[prevDisplay.textContent.length - 1] == "*") {
-        result = Number(prevDisplay.textContent.slice(0, -1)) * Number(currentDisplay.textContent)
+        result = (parseFloat(prevDisplay.textContent.slice(0, -1)) * parseFloat(currentDisplay.textContent)).toFixed(10)
         if (currentDisplay.textContent && prevDisplay.textContent) {
-            currentDisplay.textContent = result
+            currentDisplay.textContent = parseFloat(result)
+            currentOperand = currentDisplay.textContent
             prevDisplay.textContent = ""
         }
     } else if (prevDisplay.textContent[prevDisplay.textContent.length - 1] == "-") {
-        result = Number(prevDisplay.textContent.slice(0, -1)) - Number(currentDisplay.textContent)
+        result = (parseFloat(prevDisplay.textContent.slice(0, -1)) - parseFloat(currentDisplay.textContent)).toFixed(10)
         if (currentDisplay.textContent && prevDisplay.textContent) {
-            currentDisplay.textContent = result
+            currentDisplay.textContent = parseFloat(result)
+            currentOperand = currentDisplay.textContent
             prevDisplay.textContent = ""
         }
     } else if (prevDisplay.textContent[prevDisplay.textContent.length - 1] == "÷") {
-        result = Number(prevDisplay.textContent.slice(0, -1)) / Number(currentDisplay.textContent)
+        result = (parseFloat(prevDisplay.textContent.slice(0, -1)) / parseFloat(currentDisplay.textContent)).toFixed(10)
         if (currentDisplay.textContent && prevDisplay.textContent) {
-            currentDisplay.textContent = result
+            currentDisplay.textContent = parseFloat(result)
+            currentOperand = currentDisplay.textContent
             prevDisplay.textContent = ""
         }
     }
