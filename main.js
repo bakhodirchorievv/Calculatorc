@@ -22,9 +22,9 @@ prevDisplay.textContent = NUMBERS.prevDisplay || ""
 
 function updateLocalStorage () {
     localStorage.setItem("NUMBERS", JSON.stringify({
-        prevOperand,
-        currentOperand,
-        currentOperation,
+        prevOperand: prevOperand,
+        currentOperand: currentOperand,
+        currentOperation: currentOperation,
         currentDisplay: currentDisplay.textContent,
         prevDisplay: prevDisplay.textContent
     }))
