@@ -12,11 +12,30 @@ let currentOperand = "";
 let currentOperation = "";
 let result = "";
 
+let NUMBERS = JSON.parse(localStorage.getItem("NUMBERS")) || {}
+
+prevOperand = NUMBERS.prevOperand || ""
+currentOperand = NUMBERS.currentOperand || ""
+currentOperation = NUMBERS.currentOperation || ""
+currentDisplay.textContent = NUMBERS.currentDisplay || ""
+prevDisplay.textContent = NUMBERS.prevDisplay || ""
+
+function updateLocalStorage () {
+    localStorage.setItem("NUMBERS", JSON.stringify({
+        prevOperand,
+        currentOperand,
+        currentOperation,
+        currentDisplay: currentDisplay.textContent,
+        prevDisplay: prevDisplay.textContent
+    }))
+}
+
 function rDiscard () {
     if (currentDisplay.textContent.length > 25) {
         currentDisplay.textContent = currentDisplay.textContent.slice(0, -1)
         currentOperand = currentOperand.slice(0, -1)
     }
+    updateLocalStorage()
 }
 
 allClearButton.addEventListener("click", ()=> {
@@ -25,10 +44,12 @@ allClearButton.addEventListener("click", ()=> {
     prevOperand = ""
     currentOperand = ""
     currentOperand = ""
+    updateLocalStorage()
 })
 deleteButton.addEventListener("click", ()=> {
     currentDisplay.textContent = currentDisplay.textContent.slice(0, -1)
     currentOperand = currentOperand.slice(0, -1)
+    updateLocalStorage()
 })
 
 operationButtons.forEach((btn) => {
@@ -47,6 +68,7 @@ function getOperation(event) {
     currentOperation = operation;
 
     updateScreen();
+    updateLocalStorage()
 }
 
 numberButtons.forEach((btn) => {
@@ -69,6 +91,7 @@ function getNumber(event) {
     }
     updateScreen();
     rDiscard()
+    updateLocalStorage()
 }
 
 equalButton.addEventListener("click", calculate);
@@ -103,6 +126,8 @@ function calculate() {
             prevDisplay.textContent = ""
         }
     }
+
+    updateLocalStorage()
 }
 
 function updateScreen() {
@@ -115,3 +140,4 @@ function updateScreen() {
 
     currentDisplay.textContent = currentOperand;
 }
+updateLocalStorage()
