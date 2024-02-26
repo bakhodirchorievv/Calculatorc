@@ -141,3 +141,72 @@ function updateScreen() {
     currentDisplay.textContent = currentOperand;
 }
 updateLocalStorage()
+
+document.addEventListener("keydown", (e) => {
+    const key = e.key;
+
+    if (!isNaN(key) || key === ".") {
+        if (currentOperand.includes(".") && key === ".") return;
+        if (currentOperand == "" && key === ".") return;
+        if (currentOperand == "0" && key === "0") return;
+        if (currentOperand == "0" && key !== ".") {
+            currentOperand = key;
+        } else {
+            currentOperand += key;
+        }
+        updateScreen();
+        rDiscard();
+        updateLocalStorage();
+    }
+
+    if (key == "*" || key == "-" || key == "+" || key == "/") {
+        if (key == "/") {
+            let operation = "÷";
+
+            if (currentOperand == "" && operation) return;
+        
+            if (prevDisplay.textContent && currentDisplay.textContent) {
+                calculate()
+            }
+        
+            currentOperation = operation;
+        
+            updateScreen();
+            updateLocalStorage()
+        } else {
+            let operation = key;
+
+            if (currentOperand == "" && operation) return;
+        
+            if (prevDisplay.textContent && currentDisplay.textContent) {
+                calculate()
+            }
+        
+            currentOperation = operation;
+        
+            updateScreen();
+            updateLocalStorage()
+        }
+ 
+    }
+
+    if (e.key == "Backspace") {
+        currentDisplay.textContent = currentDisplay.textContent.slice(0, -1)
+        currentOperand = currentOperand.slice(0, -1)
+        updateLocalStorage()
+    }
+
+    if (key == "c" || key == "C") {
+        prevDisplay.textContent = ""
+        currentDisplay.textContent = ""
+        prevOperand = ""
+        currentOperand = ""
+        currentOperand = ""
+        updateLocalStorage()
+    }
+
+    if (key == "Enter" || key == "=") {
+        calculate()
+        updateLocalStorage()
+    }
+});
